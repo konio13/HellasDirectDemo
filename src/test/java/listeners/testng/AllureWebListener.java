@@ -68,7 +68,6 @@ public class AllureWebListener implements ITestListener, ISuiteListener, IInvoke
 
     @Override
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
-        System.out.println("afterInvocation method: " + method.getTestResult().getName());
         if (method.isTestMethod() && testResult.getStatus() == ITestResult.FAILURE) {
             takeScreenshotAndAddToAllureReport();
         }

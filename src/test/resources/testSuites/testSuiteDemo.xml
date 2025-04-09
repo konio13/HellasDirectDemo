@@ -7,19 +7,5 @@
         </classes>
     </test>
 
-<!--    <test name="Test Google Page">-->
-<!--        <classes>-->
-<!--            <class name="testClasses.GoogleTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
-
-
-<!--    <test name="MyFirstTest" parallel="false">-->
-<!--        <classes>-->
-<!--            <class name="googleGuiceDemoTestNG.testClasses.MyFirstTest"/>-->
-<!--            <class name="googleGuiceDemoTestNG.testClasses.MyAlternativeTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
-
 
 </suite>

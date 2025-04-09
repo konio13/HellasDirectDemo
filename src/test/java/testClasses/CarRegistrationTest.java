@@ -1,45 +1,69 @@
 package testClasses;
 
 import com.google.inject.Inject;
-import data.CarRegistrationData;
 import io.qameta.allure.*;
-import org.hd.objects.businessObject.GoogleBusinessObject;
+import org.hd.data.CarRegistrationData;
+import org.hd.objects.businessObject.CarRegistrationBusinessObject;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-//@Epic("Epic-Google Web interface")
-//@Feature("Feature-Google Search")
-//@Story("Story-User can search for something on Google")
-//@Owner("John Vavouras")
-//@Link(name = "Confluence feature info", url = "https://dev.example.com/")
+@Epic("Car Insurances")
+@Feature("Car Registration")
+@Story("User can register car information")
+@Owner("Nicolas")
+@Link(name = "Hellas Direct Confluence", url = "https://www.hellasdirect.gr/")
 public class CarRegistrationTest extends TestBase {
 
-    @Inject private GoogleBusinessObject googleBO;
+    @Inject private CarRegistrationBusinessObject carRegistrationBusinessObject;
+
+    CarRegistrationData carData;
 
     @BeforeClass
-    public void visitGoogle() {
-        googleBO.navigateToCarRegistrationForm();
-        googleBO.doNothing();
+    public void given() {
+        carRegistrationBusinessObject.navigateToCarRegistrationHtmlForm();
+        carData = new CarRegistrationData();
     }
 
 
-    @Test(description="This is the first step")
+    @Test(description="Verify user can submit car registration successfully")
     public void test1() {
-        LOG.info("It's all right!!!");
-        CarRegistrationData data = new CarRegistrationData();
-        LOG.info(data.getPlateNumber());
-        LOG.info(data.getPlateYear());
-//        assert false;
-
+        carRegistrationBusinessObject.submitCarRegistration(carData);
     }
 
-//    @Test(description="Login with surname")
-//    public void test2() {
-//        googleBO.visitGoogle();
-//        googleBO.doNothing();
-//        googleBO.searchFor("Life has no meanings");
-//    }
+    @Test(description="Verify car registration success message")
+    public void test2() {
+        carRegistrationBusinessObject.verifyCarRegistrationSubmissionSuccessMessage(carData);
+    }
 
+    @Test(description="Verify user is informed about failure in car registration - wrong formula")
+    public void test3() {
+        carData.setPlateNumber("ABCD1111");
+        carRegistrationBusinessObject.submitCarRegistration(carData);
+        carRegistrationBusinessObject.verifyCarRegistrationSubmissionFailureMessage();
+    }
 
+    @Test(description="Verify user is informed about failure in car registration - empty field")
+    public void test4() {
+        carData.setPlateNumber("");
+        carRegistrationBusinessObject.submitCarRegistration(carData);
+        carRegistrationBusinessObject.verifyCarRegistrationSubmissionFailureMessage();
+    }
+
+    @Issue("JIRA-0001-LimitCarPlateLength")
+    @Test(description="Verify user is informed about failure in car registration - maximum length")
+    public void test5() {
+        carData.setPlateNumber("ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789");
+        carRegistrationBusinessObject.submitCarRegistration(carData);
+        carRegistrationBusinessObject.verifyCarRegistrationSubmissionFailureMessage();
+    }
+
+    @Test(description="Verify user is informed about failure in car registration - no date selected")
+    public void test6() {
+        carRegistrationBusinessObject.refreshPage();
+        carRegistrationBusinessObject.carRegistrationPageObject
+                .inputCarPlate("ABC1234")
+                .pressSubmitBtn();
+        carRegistrationBusinessObject.verifyCarRegistrationSubmissionFailureMessage();
+    }
 
 }
