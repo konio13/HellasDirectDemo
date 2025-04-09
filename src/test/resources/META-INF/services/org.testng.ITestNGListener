@@ -1,0 +1,4 @@
+listeners.testng.AlterSuiteListener
+listeners.testng.SuiteListenerValidateTestMethodsName
+listeners.testng.SuiteListenerInjectDependenciesTestMethods
+listeners.testng.AllureWebListener
