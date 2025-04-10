@@ -3,7 +3,7 @@ package testClasses;
 import com.google.inject.Inject;
 import io.qameta.allure.*;
 import org.hd.data.CarRegistrationData;
-import org.hd.objects.businessObject.CarRegistrationBusinessObject;
+import org.hd.objects.businessObjects.CarRegistrationBusinessObject;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -25,24 +25,24 @@ public class CarRegistrationTest extends TestBase {
     }
 
 
-    @Test(description="Verify user can submit car registration successfully")
+    @Test(description="TCF01 - Verify user can submit car registration successfully")
     public void test1() {
         carRegistrationBusinessObject.submitCarRegistration(carData);
     }
 
-    @Test(description="Verify car registration success message")
+    @Test(description="TCF01 - Verify car registration success message")
     public void test2() {
         carRegistrationBusinessObject.verifyCarRegistrationSubmissionSuccessMessage(carData);
     }
 
-    @Test(description="Verify user is informed about failure in car registration - wrong formula")
+    @Test(description="TCF02 - Verify user is informed about failure in car registration - wrong formula")
     public void test3() {
         carData.setPlateNumber("ABCD1111");
         carRegistrationBusinessObject.submitCarRegistration(carData);
         carRegistrationBusinessObject.verifyCarRegistrationSubmissionFailureMessage();
     }
 
-    @Test(description="Verify user is informed about failure in car registration - empty field")
+    @Test(description="TCF02 - Verify user is informed about failure in car registration - empty field")
     public void test4() {
         carData.setPlateNumber("");
         carRegistrationBusinessObject.submitCarRegistration(carData);
@@ -50,14 +50,14 @@ public class CarRegistrationTest extends TestBase {
     }
 
     @Issue("JIRA-0001-LimitCarPlateLength")
-    @Test(description="Verify user is informed about failure in car registration - maximum length")
+    @Test(description="TCF02 - Verify user is informed about failure in car registration - maximum length")
     public void test5() {
         carData.setPlateNumber("ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789");
         carRegistrationBusinessObject.submitCarRegistration(carData);
         carRegistrationBusinessObject.verifyCarRegistrationSubmissionFailureMessage();
     }
 
-    @Test(description="Verify user is informed about failure in car registration - no date selected")
+    @Test(description="TCF02 - Verify user is informed about failure in car registration - no date selected")
     public void test6() {
         carRegistrationBusinessObject.refreshPage();
         carRegistrationBusinessObject.carRegistrationPageObject

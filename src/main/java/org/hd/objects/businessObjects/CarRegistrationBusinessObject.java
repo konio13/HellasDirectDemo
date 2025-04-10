@@ -1,4 +1,4 @@
-package org.hd.objects.businessObject;
+package org.hd.objects.businessObjects;
 
 import com.google.inject.Inject;
 import io.qameta.allure.Step;

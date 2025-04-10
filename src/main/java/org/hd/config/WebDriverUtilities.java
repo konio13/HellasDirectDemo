@@ -1,8 +1,8 @@
-package org.hd.config.browserDriver;
+package org.hd.config;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hd.config.Utilities;
+import org.hd.config.browserDriver.DriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;

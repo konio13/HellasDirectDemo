@@ -2,8 +2,8 @@ package testClasses;
 
 import com.google.inject.Inject;
 import io.qameta.allure.*;
-import org.hd.data.CarRegistrationData;
-import org.hd.objects.businessObject.CarRegistrationBusinessObject;
+import io.qameta.allure.testng.Tag;
+import org.hd.objects.businessObjects.CarRegistrationBusinessObject;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 @Story("Car Registration Form validation")
 @Owner("Nicolas")
 @Link(name = "Hellas Direct Confluence", url = "https://www.hellasdirect.gr/")
+@Tag("TCF03")
 public class CarRegistrationFormValidationTest extends TestBase {
 
     @Inject private CarRegistrationBusinessObject carRegistrationBusinessObject;
@@ -21,22 +22,19 @@ public class CarRegistrationFormValidationTest extends TestBase {
         carRegistrationBusinessObject.navigateToCarRegistrationHtmlForm();
     }
 
-
-    @Test(description="Verify car plate field placeholder")
+    @Test(description="TCF03 - Verify car plate field placeholder")
     public void test1() {
         carRegistrationBusinessObject.verifyCarPlateFieldPlaceholder();
     }
 
-    @Test(description="Verify car plate default value")
+    @Test(description="TCF03 - Verify car plate default value")
     public void test2() {
         carRegistrationBusinessObject.verifyCarPlateDefaultValue();
     }
 
-    @Test(description="Verify car date dropbox default value")
+    @Test(description="TCF03 - Verify car date dropbox default value")
     public void test3() {
         carRegistrationBusinessObject.verifyCarDateDefaultDropboxValue();
     }
-
-
 
 }

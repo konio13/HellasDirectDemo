@@ -1,4 +1,4 @@
-package org.hd.objects.businessObject;
+package org.hd.objects.businessObjects;
 
 import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
