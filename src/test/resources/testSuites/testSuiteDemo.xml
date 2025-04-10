@@ -1,11 +1,16 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Demo Suite">
 
-    <test name="Test Car Registration Form">
+    <test name="Test Car Registration">
         <classes>
             <class name="testClasses.CarRegistrationTest"/>
         </classes>
     </test>
 
+    <test name="Test Car Registration Form">
+        <classes>
+            <class name="testClasses.CarRegistrationFormValidationTest"/>
+        </classes>
+    </test>
 
 </suite>

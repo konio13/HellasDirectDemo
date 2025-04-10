@@ -6,6 +6,7 @@ import org.hd.config.ConfigManager;
 import org.hd.config.Utilities;
 import org.hd.data.CarRegistrationData;
 import org.hd.messages.Messages;
+import org.hd.formValidation.CarRegistrationFormValidation;
 import org.hd.objects.pageObjects.CarRegistrationPageObject;
 import org.junit.Assert;
 
@@ -67,6 +68,24 @@ public class CarRegistrationBusinessObject extends BusinessObjectBase {
         verifyCarRegistrationSubmissionResultMessage(Messages.CAR_REGISTRATION_ERROR);
     }
 
+    @Step
+    public void verifyCarPlateFieldPlaceholder() {
+        String placeHolder = carRegistrationPageObject.getElementPlaceHolder(
+                carRegistrationPageObject.findAndWaitElementToBePresent(CarRegistrationPageObject.Locators.INPUT_CAR_PLATE.getLocator())
+        );
+        Assert.assertEquals(CarRegistrationFormValidation.CAR_REGISTRATION_CAR_PLATE_PLACE_HOLDER, placeHolder);
+    }
 
+    @Step
+    public void verifyCarPlateDefaultValue() {
+        String carPlateDefaultValue = carRegistrationPageObject.getElementValue(CarRegistrationPageObject.Locators.INPUT_CAR_PLATE.getLocator());
+        Assert.assertEquals(CarRegistrationFormValidation.CAR_REGISTRATION_CAR_PLATE_DEFAULT_VALUE, carPlateDefaultValue);
+    }
+
+    @Step
+    public void verifyCarDateDefaultDropboxValue() {
+        String carDateDefaultValue = carRegistrationPageObject.getSelectorFirstSelectedValue(CarRegistrationPageObject.Locators.SELECTOR_YEAR.getLocator());
+        Assert.assertEquals(CarRegistrationFormValidation.CAR_REGISTRATION_CAR_DATE_DEFAULT_OPTION, carDateDefaultValue);
+    }
 
 }

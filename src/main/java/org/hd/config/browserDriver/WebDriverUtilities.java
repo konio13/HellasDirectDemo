@@ -99,11 +99,20 @@ public class WebDriverUtilities {
         }
     }
 
+    public String getSelectorFirstSelectedValue(By locator){
+        return new Select(findAndWaitElementToBeVisible(locator)).getFirstSelectedOption().getText();
+    }
+
     public String getElementInnerHTML(WebElement element){
         return element.getAttribute("innerHTML");
     }
 
+    public String getElementPlaceHolder(WebElement element){
+        return element.getAttribute("placeholder");
+    }
 
-
+    public String getElementValue(By locator){
+        return findAndWaitElementToBePresent(locator).getAttribute("value");
+    }
 
 }
